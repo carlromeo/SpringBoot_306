@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
 public class Movie {
@@ -15,6 +13,9 @@ public class Movie {
     private long year;
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "director_id")
+    private Director director;
 
     public long getId() {
         return id;
@@ -46,6 +47,14 @@ public class Movie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
     }
 }
 
